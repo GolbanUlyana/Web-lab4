@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="uk"> 
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <title>Темний</title>
+  <link rel="stylesheet" href="home.css"> 
+</head>
+<body> 
+    <header class="header">
+        <div class="header-left">
+            <a href="index.html" class="logo">Luiolunit</a>
+            <nav> 
+                <ul class="nav-links">
+                    <li><a href="#" data-translate="sales">Хіти продажів</a></li> 
+                    <li><a href="#" data-translate="new_arrivals">Нові надходження</a></li> 
+                    <li class="dropdown">
+                        <a data-translate="categories">Категорії <span>&#9660;</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a data-translate="all">Всі</a></li>
+                            <li><a data-translate="home_kitchen">Дім і кухня</a></li>
+                            <li><a data-translate="women_clothing">Жіночий одяг</a></li>
+                            <li><a data-translate="men_clothing">Чоловічий одяг</a></li>
+                            <li><a data-translate="footwear">Взуття</a></li>
+                            <li><a data-translate="Products for animals">Товари для тварин</a></li>
+                            <li><a data-translate="For telephones">Для телифонів</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="header-center">
+                <div class="search-bar"> 
+                    <input type="text" id="search-input" placeholder="" data-translate="search_placeholder"> 
+                    <button id="search-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/>
+                            <line x1="16" y1="16" x2="22" y2="22" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="login-button" id="openModalButton">
+                    <span class="login-icon">👤</span>
+                    <div class="login-text">
+                        <span id="loginText" data-translate="login_text">Увійти/зареєструватися</span><br>
+                        <strong data-translate="account_orders">Замовлення й обліковий запис</strong>
+                    </div>
+                </div>
+            
+
+<!-- Модальне вікно для вибору ролі -->
+<div id="roleModal" class="login-modal" style="display: block;">
+    <div class="modal-content">
+        <h2>Оберіть роль</h2>
+        <button id="userRoleButton">Користувач</button>
+        <button id="adminRoleButton">Адміністратор</button>
+    </div>
+</div>
+
+
+               <!--  Модальне вікно для входу/реєстрації -->
+                <div id="loginModal" class="login-modal">
+                    <div class="modal-content">
+                        <span class="close" id="closeModalButton">&times;</span>
+            
+                        <!-- Кнопки для перемикання між формами -->
+                        <div class="modal-tabs">
+                            <button id="loginTab" class="tab active">Увійти</button>
+                            <button id="registerTab" class="tab">Зареєструватися</button>
+                        </div>
+            
+                        <!-- Контейнер для форм -->
+                        <div class="form-container">
+                            <!-- Форма входу -->
+                            <div id="loginForm" class="form-content active">
+                                <h2>Вхід</h2>
+                                <form id="loginFormElement">
+                                    <div class="input-group">
+                                        <input type="text" id="loginUsername" placeholder="Логін">
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="password" id="loginPassword" placeholder="Пароль">
+                                    </div>
+                                    <button type="submit">Увійти</button>
+                                </form>
+                            </div>
+            
+                            <!-- Форма реєстрації -->
+                            <div id="registerForm" class="form-content">
+                                <h2>Реєстрація</h2>
+                                <form id="registerFormElement">
+                                    <div class="input-group">
+                                        <input type="text" id="registerUsername" placeholder="Ім'я">
+                                    </div>
+            
+                                    <div class="input-group">
+                                        <input type="email" id="registerEmail" placeholder="Email">
+                                    </div>
+            
+                                    <div class="input-group">
+                                        <input type="password" id="registerPassword" placeholder="Пароль">
+                                    </div>
+            
+                                    <!-- Аватарка -->
+                                    <label class="avatar-upload">
+                                        <h3>Виберіть іконку</h3>
+                                        <input type="file" id="avatarInput" accept="image/*" />
+                                        <div class="avatar-preview" id="avatarPreview">U</div>
+                                    </label>
+            
+                                    <!-- Країни -->
+                                    <label for="country">Оберіть країну:</label>
+                                    <select name="country" id="country" required>
+                                        <option value="">-- Виберіть --</option>
+                                        <option value="ua">Україна</option>
+                                        <option value="pl">Польща</option>
+                                        <option value="de">Німеччина</option>
+                                        <option value="us">США</option>
+                                        <option value="ca">Канада</option>
+                                    </select>
+                                    
+            
+                                    <button type="submit">Зареєструватися</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Вікно адміністратора з полем для коду доступу -->
+            <div id="adminModal" class="login-modal">
+                <div class="modal-content">
+                  <span class="close" id="closeAdminModal">&times;</span>
+                  <h2>Вхід адміністратора</h2>
+                  <form id="adminAccessForm">
+                    <div class="input-group">
+                      <input type="text" id="adminAccessCode" placeholder="Введіть код доступу">
+                    </div>
+                    <button type="submit">Увійти</button>
+                  </form>
+                </div>
+              </div>
+
+
+
+
+
+
+                <div id="profileModal" class="login-modal">
+                    <div class="modal-content">
+                        <span class="close" id="closeProfileModalButton">&times;</span>
+                        <div id="profileAvatar"></div>
+                        <div id="profileUsername"></div>
+                        <button onclick="logout()">Вийти</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+
+  
+  
+  
+      
+                
+                
+            
+            <div class="header-right">
+                <nav> 
+                    <ul class="nav-links">
+                        <li class="dropdown">
+                            <a href="#" data-translate="support">Підтримка</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" data-translate="support_center">Центр підтримки</a></li>
+                                <li><a href="#" data-translate="security_center">Центр безпеки</a></li>
+                                <li><a href="#" data-translate="terms_conditions">Умови користування</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav> 
+        </div>
+            
+    
+    
+            <div class="language-menu">
+                <div class="language-switch">
+                    <img src="images/Flag_of_Ukraine.svg.webp" alt="UA">
+                    <span data-translate="ukrainian">UK</span>
+                </div>
+                <div class="dropdowN">
+                    <p><strong data-translate="language">Мова</strong></p>
+                    <label><input type="radio" name="language" id="ukrainian" checked> <span data-translate="ukrainian">Українська-UK</span></label>
+                    <label><input type="radio" name="language" id="english"> <span data-translate="english">English-EN</span></label>
+                    <hr>
+                    <p><strong data-translate="currency">Валюта</strong></p>
+                    <p><span data-translate="uah">UAH: ₴</span> <a href="#" data-translate="change">змінити ></a></p>
+                </div>
+            </div>
+            
+            
+    
+            
+        
+    
+    
+            <a href="cart-icon.html" class="cart-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 4H3V6H5L8.68 14.39L7.25 17C6.87 17.67 7.34 18.5 8.11 18.5H19V16.5H8.76L10 14H17.3C17.93 14 18.5 13.64 18.74 13.06L21.82 6.47C22.04 6 21.64 5.5 21.13 5.5H6.09L5.27 3.5H2V5H4L7 4Z" fill="currentColor"/>
+                </svg>
+            </a>
+            
+        </div>
+    </header>
+    
+
+
+<div class="banner">
+    <img src="images/Банер.webp" alt="Банер" class="banner-image">
+    <div class="banner-content">
+    </div>
+</div>
+
+<section class="info-banner">
+    <div class="info-header">
+        <span class="title" data-translate="why_Luiolunit">Чому вибирають Luiolunit?</span>
+        <nav>
+            <a href="#" data-translate="security"><span class="icon">🔒</span> Безпека та конфіденційність</a> |
+            <a href="#" data-translate="secure_payments"><span class="icon">💳</span> Безпечні платежі</a> |
+            <a href="#" data-translate="delivery_guarantee"><span class="icon">📦</span> Гарантія доставки</a>
+        </nav>
+    </div>
+    <div class="info-message">
+        <span class="icon">🔔</span>
+        <span class="text" data-translate="security_reminder">Нагадування про безпеку: Остерігайтеся шахрайських повідомлень і посилань. Luiolunit не проситиме додаткових зборів через SMS або електронну пошту.</span>
+        <a href="#" data-translate="view_more">Переглянути ➤</a>
+    </div>
+</section>
+
+
+
+    <div class="products-container">
+        <div class="product" data-name="Товар 1" data-category="women_clothing">
+            <img src="images/Товар 1.webp" alt="Товар 1">
+            <p data-translate="Mini dress with v-neck and floral lace">Міні-сукня з v-вирізом та квітковим мереживом</p>
+            <div class="product-info">
+                <p class="product-price">274.83₴</p>
+                <button class="buy-button" 
+            onclick="addToCart('Міні-сукня з v-вирізом та квітковим мереживом', 274.83, 'images/Товар 1.webp')">
+            Купити
+        </button>
+            </div>
+            <div class="rating-container">
+                <span class="average-rating">0.0</span> 
+            <div class="product-rating" data-product="Товар 1" onclick="openRatingModal('Товар 1')">★★★★★</div>
+            <span class="review-count">0</span> 
+        </div>
+    </div>
+
+          
+            
+
+    
+
+    <div class="product" data-name="Товар 2" data-category="footwear">
+        <img src="images/Товар 2.webp" alt="Товар 2">
+        <p data-translate="Women`s fluffy slippers"> Жіночі пухнасті тапочки</p>
+        <div class="product-info">
+        <p class="product-price">56.96₴</p>
+        <button class="buy-button" 
+                onclick="addToCart('Жіночі пухнасті тапочки', 56.96, 'images/Товар 2.webp')">
+                Купити
+              </button>
+            </div>
+            <div class="rating-container">
+                <span class="average-rating">0.0</span> 
+            <div class="product-rating" data-product="Товар 2" onclick="openRatingModal('Товар 2')">★★★★★</div>
+            <span class="review-count">0</span> 
+        </div>
+    </div>
+
+          
+
+
+    <div class="product" data-name="Товар 3" data-category="For telephones">
+        <img src="images/Товар 3.webp" alt="Товар 3">
+        <p data-translate="Thinking cat case"> Чохол думаючий кіт</p>
+        <div class="product-info">
+        <p class="product-price">138.87₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Чохол думаючий кіт', 138.87, 'images/Товар 3.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 3" onclick="openRatingModal('Товар 3')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+    <div class="product" data-name="Товар 4" data-category="women_clothing">
+        <img src="images/Товар 4.webp" alt="Товар 4">
+        <p data-translate="Beige high-waisted shorts">Бежеві шорти з високою талією</p>
+        <div class="product-info">
+        <p class="product-price">274.83₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Бежеві шорти з високою талією', 274.83, 'images/Товар 4.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 4" onclick="openRatingModal('Товар 4')">★★★★★</div>
+    <span class="review-count">0</span> 
+  </div>
+</div>
+
+
+    <div class="product" data-name="Товар 5" data-category="home_kitchen">
+        <img src="images/Товар 5.webp" alt="Товар 5">
+        <p data-translate="3-tier cake stand"> 3-рівнева підставка для торту</p>
+        <div class="product-info">
+        <p class="product-price">187.21₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('3-рівнева підставка для торту', 187.21, 'images/Товар 5.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 5" onclick="openRatingModal('Товар 5')">★★★★★</div>
+    <span class="review-count">0</span> 
+  </div>
+</div>
+
+
+    <div class="product" data-name="Товар 6" data-category="For telephones">
+        <img src="images/Товар 6.webp" alt="Товар 6">
+        <p data-translate="Cable protection cover"> Захисна обкладинка для кабелю</p>
+        <div class="product-info">
+        <p class="product-price">62.68₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Захисна обкладинка для кабелю', 62.68, 'images/Товар 6.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 6" onclick="openRatingModal('Товар 6')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+    <div class="product" data-name="Товар 7" data-category="Products for animals">
+        <img src="images/Товар 7.webp" alt="Товар 7">
+        <p data-translate="Transparent bird bath"> Прозора ванна для птахів</p>
+        <div class="product-info">
+        <p class="product-price">137.81₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Прозора ванна для птахів', 137.81, 'images/Товар 7.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 7" onclick="openRatingModal('Товар 7')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+    <div class="product" data-name="Товар 8" data-category="footwear">
+        <img src="images/Товар 8.webp" alt="Товар 8">
+        <p data-translate="Roman sandals">Римські сандалі</p>
+        <div class="product-info">
+        <p class="product-price">821.89₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Римські сандалі', 821.89, 'images/Товар 8.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 8" onclick="openRatingModal('Товар 8')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+    <div class="product" data-name="Товар 9" data-category="Products for animals">
+        <img src="images/Товар 9.webp" alt="Товар 9">
+        <p data-translate="Brush with steam"> Щітка з паром</p>
+        <div class="product-info">
+        <p class="product-price">136.15₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Щітка з паром', 136.15, 'images/Товар 9.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 9" onclick="openRatingModal('Товар 9')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+    <div class="product" data-name="Товар 10" data-category="For telephones">
+        <img src="images/Товар 10.webp" alt="Товар 10">
+        <p data-translate="Liquid silicone cable"> Рідкий силіконовий кабель</p>
+        <div class="product-info">
+        <p class="product-price">84.68₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Рідкий силіконовий кабель', 84.68, 'images/Товар 10.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 10" onclick="openRatingModal('Товар 10')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+    <div class="product" data-name="Товар 11" data-category="home_kitchen">
+        <img src="images/Товар 11.webp" alt="Товар 11">
+        <p data-translate="Jug for lemonade"> Кувшин для лимонаду</p>
+        <div class="product-info">
+        <p class="product-price">580.31₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Кувшин для лимонаду', 580.31, 'images/Товар 11.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 11" onclick="openRatingModal('Товар 11')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+    <div class="product" data-name="Товар 12" data-category="Products for animals">
+        <img src="images/Товар 12.webp" alt="Товар 12">
+        <p data-translate="Bath towel"> Рушник для ванни</p>
+        <div class="product-info">
+        <p class="product-price">277.70₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Рушник для ванни', 277.70, 'images/Товар 12.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 12" onclick="openRatingModal('Товар 12')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+    <div class="product" data-name="Товар 13" data-category="For telephones">
+        <img src="images/Товар 13.webp" alt="Товар 13">
+        <p data-translate="Black capybara case"> Чорний чохол з капібарою</p>
+        <div class="product-info">
+        <p class="product-price">51.89₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Чорний чохол з капібарою', 51.89, 'images/Товар 13.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 13" onclick="openRatingModal('Товар 13')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+    <div class="product" data-name="Товар 14" data-category="women_clothing">
+        <img src="images/Товар 14.webp" alt="Товар 14">
+        <p data-translate="Women`s skirt for spring"> Жіноча спідниця для весни</p>
+        <div class="product-info">
+        <p class="product-price">400.15₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Жіноча спідниця для весни', 400.15, 'images/Товар 14.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 14" onclick="openRatingModal('Товар 14')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+    <div class="product" data-name="Товар 15" data-category="home_kitchen">
+        <img src="images/Товар 15.webp" alt="Товар 15">
+        <p data-translate="Green flocking moss rabbit"> Зелений флокінг мох кролик</p>
+        <div class="product-info">
+        <p class="product-price">55.62₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Зелений флокінг мох кролик', 55.62, 'images/Товар 15.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 15" onclick="openRatingModal('Товар 15')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+    <div class="product" data-name="Товар 16" data-category="home_kitchen">
+        <img src="images/Товар 16.webp" alt="Товар 16">
+        <p data-translate="Plush oval rug"> Плюшевий овальний килимок</p>
+        <div class="product-info">
+        <p class="product-price">269.81₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Плюшевий овальний килимок', 269.81, 'images/Товар 16.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 16" onclick="openRatingModal('Товар 16')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+    <div class="product" data-name="Товар 17" data-category="footwear">
+        <img src="images/Товар 17.webp" alt="Товар 17">
+        <p data-translate="1 pair of fashionable over-the-knee boots"> 1 пара модних чобіт вище коліна</p>
+        <div class="product-info">
+        <p class="product-price">559.97₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('1 пара модних чобіт вище коліна', 559.97, 'images/Товар 17.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 17" onclick="openRatingModal('Товар 17')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+    <div class="product" data-name="Товар 18" data-category="women_clothing">
+        <img src="images/Товар 18.webp" alt="Товар 18">
+        <p data-translate="Solid color jacket"> Одноколірний пілжак</p>
+        <div class="product-info">
+        <p class="product-price">638.42₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Одноколірний пілжак', 638.42, 'images/Товар 18.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 18" onclick="openRatingModal('Товар 18')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+    <div class="product" data-name="Товар 19" data-category="For telephones">
+        <img src="images/Товар 19.webp" alt="Товар 19">
+        <p data-translate="Case with black TPU pattern of mountains and water"> Чохол з чорним TPU малюнком гор та води</p>
+        <div class="product-info">
+        <p class="product-price">56.96₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Чохол з чорним TPU малюнком гор та води', 56.96, 'images/Товар 19.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 19" onclick="openRatingModal('Товар 19')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+    <div class="product" data-name="Товар 20" data-category="Products for animals">
+        <img src="images/Товар 20.webp" alt="Товар 20">
+        <p data-translate="Automatic feeder"> Автоматична годівниця</p>
+        <div class="product-info">
+        <p class="product-price">310.49₴</p>
+        <button class="buy-button" 
+        onclick="addToCart('Автоматична годівниця', 310.49, 'images/Товар 20.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 20" onclick="openRatingModal('Товар 20')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+<!-- Приховані товари (будуть показані після натискання) -->
+
+<div class="product" data-name="Товар 21" data-category="Products for animals">
+    <img src="images/Товар 21.webp" alt="Товар 21">
+    <p data-translate="Plush bed"> Плюшеве ліжко</p>
+    <div class="product-info">
+    <p class="product-price">292.23₴</p>
+    <button class="buy-button" 
+        onclick="addToCart('Плюшеве ліжко', 292.23, 'images/Товар 21.webp')">
+        Купити
+      </button>
+    </div>
+    <div class="rating-container">
+        <span class="average-rating">0.0</span> 
+    <div class="product-rating" data-product="Товар 21" onclick="openRatingModal('Товар 21')">★★★★★</div>
+    <span class="review-count">0</span> 
+</div>
+</div>
+
+
+<div class="product" data-name="Товар 22" data-category="home_kitchen">
+    <img src="images/Товар 22.webp" alt="Товар 22">
+    <p data-translate="Large realistic leaf plant"> Велика реалістична листова рослина</p>
+    <div class="product-info">
+    <p class="product-price">152.34₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('Велика реалістична листова рослина', 152.34, 'images/Товар 22.webp')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span> 
+<div class="product-rating" data-product="Товар 22" onclick="openRatingModal('Товар 22')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+<div class="product" data-name="Товар 23" data-category="women_clothing">
+    <img src="images/Товар 23.webp" alt="Товар 23">
+    <p data-translate="Floral blouse"> Квіткова блуза</p>
+    <div class="product-info">
+    <p class="product-price">425.48₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('Квіткова блуза', 425.48, 'images/Товар 23.webp')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 23" onclick="openRatingModal('Товар 23')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+<div class="product" data-name="Товар 24" data-category="footwear">
+    <img src="images/Товар 24.webp" alt="Товар 24">
+    <p data-translate="1 pair MAINALUN"> 1 пара MAINALUN</p>
+    <div class="product-info">
+    <p class="product-price">274.83₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('1 пара MAINALUN', 274.83, 'images/Товар 24.webp')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 24" onclick="openRatingModal('Товар 24')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+<div class="product" data-name="Товар 25" data-category="footwear">
+    <img src="images/Товар 25.webp" alt="Товар 25">
+    <p data-translate="Business shoes"> Взуття для бізнесу</p>
+    <div class="product-info">
+    <p class="product-price">1047.71₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('Взуття для бізнесу', 1047.71, 'images/Товар 25.webp')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 25" onclick="openRatingModal('Товар 25')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+<div class="product" data-name="Товар 26" data-category="home_kitchen">
+    <img src="images/Товар 26.webp" alt="Товар 26">
+    <p data-translate="Tea set"> Чайний набір</p>
+    <div class="product-info">
+    <p class="product-price">26.96₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('Чайний набір', 26.96, 'images/Товар 26.webp')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 26" onclick="openRatingModal('Товар 26')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+<div class="product" data-name="Товар 27" data-category="men_clothing">
+    <img src="images/Товар 27.jpg" alt="Товар 27">
+    <p data-translate="Chinese trend"> Китайська тенденція</p>
+    <div class="product-info">
+    <p class="product-price">496.87₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('Китайська тенденція', 496.87, 'images/Товар 27.jpg')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 27" onclick="openRatingModal('Товар 27')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+<div class="product" data-name="Товар 28" data-category="men_clothing">
+    <img src="images/Товар 28.jpg" alt="Товар 28">
+    <p data-translate="Summer T-shirt"> Літня футболка</p>
+    <div class="product-info">
+    <p class="product-price">202.98₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('Літня футболка', 202.98, 'images/Товар 28.jpg')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 28" onclick="openRatingModal('Товар 28')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+<div class="product" data-name="Товар 29" data-category="men_clothing">
+    <img src="images/Товар 29.jpg" alt="Товар 29">
+    <p data-translate="Retro sweatshirt"> Ретро світшот</p>
+    <div class="product-info">
+    <p class="product-price">180.96₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('Ретро світшот', 180.96, 'images/Товар 29.jpg')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 29" onclick="openRatingModal('Товар 29')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+
+<div class="product" data-name="Товар 30" data-category="men_clothing">
+    <img src="images/Товар 30.jpg" alt="Товар 30">
+    <p data-translate="Casual sweatshirt"> Повсякденна світшотка</p>
+    <div class="product-info">
+    <p class="product-price">355.32₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('Повсякденна світшотка', 355.32, 'images/Товар 30.jpg')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 30" onclick="openRatingModal('Товар 30')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+<div class="product" data-name="Товар 31" data-category="men_clothing">
+    <img src="images/Товар 31.jpg" alt="Товар 31">
+    <p data-translate="printed sweatshirt"> світшот з принтом</p>
+    <div class="product-info">
+    <p class="product-price">371.93₴</p>
+    <button class="buy-button" 
+    onclick="addToCart('світшот з принтом', 371.93, 'images/Товар 31.jpg')">
+    Купити
+  </button>
+</div>
+<div class="rating-container">
+    <span class="average-rating">0.0</span>
+<div class="product-rating" data-product="Товар 31" onclick="openRatingModal('Товар 31')">★★★★★</div>
+<span class="review-count">0</span> 
+</div>
+</div>
+
+
+<!-- Кнопка для показу більше товарів -->
+<button id="show-more" class="show-more-btn" > Показати більше</button>
+
+<div id="toast" class="toast">✅ Товар додано до кошика!</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div id="overlay" class="overlay"></div>
+
+<div id="subscribe-modal" class="modal">
+    <p>Підпишіться на наші повідомлення, щоб отримувати останні оновлення!</p>
+    <button id="accept-btn">Прийняти</button>
+    <button id="decline-btn">Відхилити</button>
+</div>
+
+<div id="thank-you" class="thank-you">Дякуємо за підписку!</div>
+
+
+
+<div id="ad-modal" class="ad-modal">
+    <img id="ad-image" src="" alt="Ad Image" class="ad-image">
+    <div id="ad-content">🔥 Великий розпродаж! Знижки до 50%!</div>
+    <button id="close-ad" class="close-btn">✖</button>
+</div>
+
+
+<div id="modalOverlay" class="modal-overlay" style="display: none;"></div>
+
+<!-- Модальне вікно для рейтингу та відгуку -->
+<div id="ratingModal" class="rating-modal">
+    <span class="close" onclick="closeRatingModal()">×</span>
+    <h2>Оцініть товар</h2>
+
+    <div class="rating-summary">
+        <div class="rating-average">
+            <span id="average-rating">0.0</span>
+        </div>
+        <div class="rating-distribution" id="rating-distribution">
+        </div>
+    </div>
+    
+
+    <div class="stars">
+        <span class="star" onclick="rateProduct(1)">★</span>
+        <span class="star" onclick="rateProduct(2)">★</span>
+        <span class="star" onclick="rateProduct(3)">★</span>
+        <span class="star" onclick="rateProduct(4)">★</span>
+        <span class="star" onclick="rateProduct(5)">★</span>
+    </div>
+    
+    <input type="hidden" id="selectedStars" value="5">
+
+    <p>Всього відгуків: <span id="review-count">0</span></p>
+
+
+    <textarea id="reviewText" placeholder="Напишіть ваш відгук..."></textarea>
+    <button onclick="submitReview()">Надіслати відгук</button>
+
+    <div id="reviewList"></div>
+</div>
+
+
+
+</body>
+<script src="cart.js"></script> 
+<script src="script.js"></script>  
+<script src="Language.js"></script>
+<script src="search.js"></script>
+<script src="categories.js"></script>
+<script src="Subscription.js"></script> 
+<script src="Advertising.js"></script>
+<script src="Rating.js"></script>
+<script src="product-more.js"></script>
+<script src="login-modal.js"></script>  
+</html>
